@@ -1,9 +1,9 @@
-﻿using System.Buffers;
-using System.Diagnostics.CodeAnalysis;
-using Bedrock.Framework.Protocols;
-using Midi.Messages;
+﻿namespace Midi.Bedrock;
 
-namespace Midi.Bedrock;
+using System.Buffers;
+using System.Diagnostics.CodeAnalysis;
+using global::Bedrock.Framework.Protocols;
+using Midi.Messages;
 
 public class MidiProtocol : IMessageReader<MidiMessage>, IMessageWriter<MidiMessage> {
 	public bool TryParseMessage(

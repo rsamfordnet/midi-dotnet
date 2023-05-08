@@ -1,6 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace Midi;
 
-namespace Midi;
+using System.Diagnostics.CodeAnalysis;
+using Midi.Extensions;
 
 /// <summary>
 ///		Status bytes are eight-bit binary numbers in which the Most Significant Bit (MSB) is set (binary 1).
@@ -54,8 +55,8 @@ public sealed record MidiStatusByte {
 	private static readonly HashSet<MidiStatusByte> values = new();
 
 	private MidiStatusByte(byte value, bool highOnly = false) {
-		this.Value = value;
-		this.HighOnly = highOnly;
+		Value = value;
+		HighOnly = highOnly;
 
 		if (!values.Add(this)) {
 			throw new ArgumentException($"Status byte {value} has already been registered.", nameof(value));

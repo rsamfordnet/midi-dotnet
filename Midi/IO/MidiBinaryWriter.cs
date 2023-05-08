@@ -1,14 +1,17 @@
-﻿using System.Text;
+﻿namespace Midi.IO;
 
-namespace Midi.IO;
+using System.Text;
 
 public class MidiBinaryWriter : BinaryWriter {
 	public MidiBinaryWriter(Stream input) : base(input) { }
 
 	public void WriteMidiString(string text, bool nullTerminate) {
-		this.Write(Encoding.ASCII.GetBytes(text));
-		if (!nullTerminate)
+		Write(Encoding.ASCII.GetBytes(text));
+
+		if (!nullTerminate) {
 			return;
-		this.Write((byte) 0);
+		}
+
+		Write((byte)0);
 	}
 }

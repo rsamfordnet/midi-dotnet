@@ -1,7 +1,7 @@
-﻿using System.Buffers;
-using System.Diagnostics.CodeAnalysis;
+﻿namespace Midi.Messages;
 
-namespace Midi.Messages;
+using System.Buffers;
+using System.Diagnostics.CodeAnalysis;
 
 public record MidiMessage(ReadOnlySequence<byte> RawBytes) {
 	public static readonly MidiMessage Empty = new(ReadOnlySequence<byte>.Empty);
