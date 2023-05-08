@@ -13,7 +13,18 @@ public class MidiProtocol : IMessageReader<MidiMessage>, IMessageWriter<MidiMess
 		[UnscopedRef] out MidiMessage message
 	) {
 		var reader = new SequenceReader<byte>(input);
-		if (!reader.TryReadTo(out ReadOnlySequence<byte> line, MidiStatusByte.SystemExclusiveEnd.Value, advancePastDelimiter: true)) {
+
+		if (reader.TryPeek(out var val)) {
+			if (!MidiStatusByte.IsStatusByte(val)) {
+
+			}
+		}
+
+		if (!reader.TryReadToAny(
+			sequence: out var line,
+			delimiters: MidiStatusByte.AllStatusBytes,
+			advancePastDelimiter: false
+		)) {
 			message = MidiMessage.Empty;
 			consumed = input.Start;
 			examined = input.End;

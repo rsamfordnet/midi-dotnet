@@ -1,0 +1,39 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!-- https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management -->
+	<!-- https://devblogs.microsoft.com/nuget/introducing-central-package-management/ -->
+	<!-- https://blog.jetbrains.com/dotnet/2022/11/07/nuget-central-package-management-comes-to-jetbrains-rider/ -->
+	<PropertyGroup>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Label="Build and Versioning">
+		<PackageVersion Include="MinVer" Version="4.3.0" />
+		<PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.1.1" />
+	</ItemGroup>
+
+	<ItemGroup Label="Annotations and Analyzers">
+		<PackageVersion Include="Nullable.Extended.Analyzer" Version="1.10.4539" />
+		<PackageVersion Include="JetBrains.Annotations" Version="2022.3.1" />
+	</ItemGroup>
+
+	<ItemGroup Label="Fody Weavers">
+		<PackageVersion Include="Fody" Version="6.6.4" />
+		<PackageVersion Include="ConfigureAwait.Fody" Version="3.3.2" />
+		<PackageVersion Include="NullGuard.Fody" Version="3.1.1" />
+	</ItemGroup>
+
+	<ItemGroup Label="Testing">
+		<PackageVersion Include="coverlet.collector" Version="3.2.0" />
+		<PackageVersion Include="FluentAssertions" Version="6.9.0" />
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+		<PackageVersion Include="MSTest.TestAdapter" Version="3.0.2" />
+		<PackageVersion Include="MSTest.TestFramework" Version="3.0.2" />
+	</ItemGroup>
+
+</Project>

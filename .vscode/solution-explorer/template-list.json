@@ -1,0 +1,28 @@
+{
+	"templates": [
+		{
+			"extension": "cs",
+			"file": "./class.cs-template",
+			"name": "Class",
+			"parameters": "./template-parameters.js"
+		},
+		{
+			"extension": "cs",
+			"file": "./record.cs-template",
+			"name": "Record",
+			"parameters": "./template-parameters.js"
+		},
+		{
+			"extension": "cs",
+			"file": "./interface.cs-template",
+			"name": "Interface",
+			"parameters": "./template-parameters.js"
+		},
+		{
+			"extension": "cs",
+			"file": "./enum.cs-template",
+			"name": "Enum",
+			"parameters": "./template-parameters.js"
+		}
+	]
+}

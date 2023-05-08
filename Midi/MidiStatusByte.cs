@@ -12,7 +12,16 @@ public sealed record MidiStatusByte {
 	/// <remarks>
 	///		MIDI 1.0 Detailed Specification 4.2.1 - Page 3 (PDF Page 8)
 	/// </remarks>
+	public const byte MinDataByte = 0x00;
+	public const byte MaxDataByte = 0x7F;
+
 	public const byte MinStatusByte = 0x80;
+	public const byte MaxStatusByte = 0xFF;
+
+	public static readonly byte[] AllStatusBytes =
+		Enumerable
+			.Range(MinStatusByte, MaxStatusByte)
+			.Select(x => (byte)x).ToArray();
 
 	#region Channel Status Bytes
 
@@ -26,36 +35,9 @@ public sealed record MidiStatusByte {
 	#region System Realtime Status Bytes (MIDI 1.0 Detailed Specification 4.2.1 - Page 30)
 
 	public static readonly MidiStatusByte SongSelect = new(0xF3);
-
-	/// <summary>
-	/// 	Clock-based MIDI systems are synchronized with this message, which is
-	/// 	sent at a rate of 24 per quarter note. If Timing Clocks (F8H) are sent during
-	/// 	idle time they should be sent at the current tempo setting of the transmitter
-	/// 	even while it is not playing. Receivers which are synchronized to incoming
-	/// 	Real Time messages (MIDI Sync mode) can thus phase lock their internal
-	/// 	clocks while waiting for a Start (FAH) or Continue (FBH) command.
-	/// </summary>
 	public static readonly MidiStatusByte TimingClock = new(0xF8);
-
-	/// <summary>
-	///		Start (FAH) is sent when a PLAY button on the master (sequencer or drum
-	///		machine) is pressed. This message commands all receivers which are
-	///		synchronized to incoming Real Time messages (MIDI Sync mode) to start
-	///		at the beginning of the song or sequence.
-	/// </summary>
 	public static readonly MidiStatusByte Start = new(0xFA);
-
-	/// <summary>
-	///		Continue (FBH) is sent when a CONTINUE button is hit.
-	///		A sequence will continue from its current location upon
-	///		receipt of the next Timing Clock (F8H).
-	/// </summary>
 	public static readonly MidiStatusByte Continue = new(0xFB);
-
-	/// <summary>
-	///		Stop (FCH) is sent when a STOP button is hit.
-	///		Playback in a receiver should	stop immediately.
-	/// </summary>
 	public static readonly MidiStatusByte Stop = new(0xFC);
 	public static readonly MidiStatusByte ActiveSensing = new(0xFE);
 	public static readonly MidiStatusByte SystemReset = new(0xFF);
@@ -83,11 +65,9 @@ public sealed record MidiStatusByte {
 	public byte Value { get; }
 	public bool HighOnly { get; }
 
-	/// <summary>
-	///
-	/// </summary>
-	/// <param name="value"></param>
-	/// <returns>True if the byte is a status byte, otherwise false if it is a data byte.</returns>
+	/// <returns>
+	///		True if the byte is a status byte, otherwise false if it is a data byte.
+	/// </returns>
 	public static bool IsStatusByte(byte value) {
 		return value >= MinStatusByte;
 	}

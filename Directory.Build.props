@@ -1,0 +1,81 @@
+<Project>
+
+	<PropertyGroup>
+		<MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+	</PropertyGroup>
+
+	<!-- https://github.com/dotnet/reproducible-builds/tree/main/Documentation/Reproducible-MSBuild/Techniques -->
+	<Sdk Name="DotNet.ReproducibleBuilds.Isolated" Version="1.1.1" />
+
+	<PropertyGroup Label="DotNet">
+		<!-- https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/language -->
+		<LangVersion>latest</LangVersion>
+		<Deterministic>true</Deterministic>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+		<Features>strict</Features>
+		<!-- TODO: Reenable prior to a 1.0 release -->
+		<!--<GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+
+		<!-- https://docs.microsoft.com/en-us/visualstudio/code-quality/migrate-from-fxcop-analyzers-to-net-analyzers?view=vs-2019 -->
+		<AnalysisLevel>latest</AnalysisLevel>
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DefaultItemExcludes>$(DefaultItemExcludes);*.DotSettings</DefaultItemExcludes>
+	</PropertyGroup>
+
+	<PropertyGroup Label="DotNet" Condition=" '$(CI)' == 'true' ">
+		<NoWarn>$(NoWarn);0618</NoWarn>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Packaging">
+		<Product>DigiMix</Product>
+		<Authors>Christopher.Haws</Authors>
+		<Year>$([System.DateTime]::Now.ToString(yyyy))</Year>
+		<Copyright>Copyright $(Year) Christopher Haws</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl Condition=" '$(REPOSITORY_URL)' != '' ">$(REPOSITORY_URL)</RepositoryUrl>
+		<PackageProjectUrl Condition=" '$(PROJECT_URL)' != '' ">$(PROJECT_URL)</PackageProjectUrl>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup Label="Packaging">
+		<None Include="$([System.IO.Path]::Combine($(MSBuildThisFileDirectory), 'LICENSE.txt'))" Pack="true" PackagePath="\" Visible="false" />
+		<None Include="$([System.IO.Path]::Combine($(MSBuildThisFileDirectory), 'README.md'))" Pack="true" PackagePath="\" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup Label="SourceLink" Condition=" '$(CI)' == 'true' ">
+		<!-- https://github.com/dotnet/sourcelink -->
+		<!-- https://github.com/dotnet/reproducible-builds -->
+		<PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup Label="DebugFriendAssemblies" Condition=" '$(BuildConfiguration)' == 'Debug' ">
+		<InternalsVisibleTo Include="LINQPadQuery" />
+	</ItemGroup>
+
+	<ItemGroup Label="GlobalFriendAssemblies">
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>$(AssemblyName).Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup Label="GlobalAnalyzers">
+		<PackageReference Include="Nullable.Extended.Analyzer" Version="1.10.4539">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Label="GlobalAnnotations">
+		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+		<Using Include="JetBrains.Annotations" />
+	</ItemGroup>
+
+
+</Project>

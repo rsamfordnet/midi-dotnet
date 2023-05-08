@@ -1,0 +1,115 @@
+{
+	"[csharp]": {
+		"editor.defaultFormatter": "ms-dotnettools.csharp"
+	},
+	"[editorconfig]": {
+		"editor.defaultFormatter": "EditorConfig.EditorConfig"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "yzhang.markdown-all-in-one",
+		"editor.wordWrap": "bounded",
+		"editor.wordWrapColumn": 120
+	},
+	"[msbuild]": {
+		"editor.defaultFormatter": "redhat.vscode-xml"
+	},
+	"[yaml]": {
+		"editor.autoIndent": "advanced",
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2,
+		"gitlens.codeLens.scopes": ["document"]
+	},
+	"cSpell.language": "en-US",
+	"cSpell.words": ["Digi"],
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": true
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.detectIndentation": false,
+	"editor.formatOnPaste": false,
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "file",
+	"editor.formatOnType": false,
+	"editor.suggest.showSnippets": false,
+	"editor.suggest.showWords": false,
+	"editor.wrappingIndent": "deepIndent",
+	"explorer.fileNesting.enabled": true,
+	"explorer.fileNesting.expand": false,
+	// https://github.com/antfu/vscode-file-nesting-config
+	"explorer.fileNesting.patterns": {
+		"*.csproj": "$(capture).csproj.DotSettings",
+		"*.razor": "$(capture).*.razor.cs, $(capture).*.razor.css, $(capture).*.razor.scss, $(capture).*.razor.sass, $(capture).*.razor.js, $(capture).*.razor.ts",
+		"*.sln": "Directory.*.props, Directory.*.targets, global.json, nuget.config, .editorconfig, .globalconfig",
+		".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+		"readme*": "authors, backers*, changelog*, citation*, code_of_conduct*, codeowners, contributing*, contributors, copying, credits, governance.md, history.md, license*, maintainers, readme*, security.md, sponsors*"
+	},
+	"files.associations": {
+		"**/*.csproj": "msbuild",
+		"**/*.props": "msbuild",
+		"**/*.slnf": "json",
+		"**/*.targets": "msbuild",
+		"**/.azure-pipelines/**/*.yml": "azure-pipelines",
+		"**/.editorconfig": "editorconfig",
+		"**/.globalconfig": "editorconfig",
+		"**/.vscode/solution-explorer/*.cs-template": "csharp"
+	},
+	"files.autoSave": "off",
+	"files.exclude": {
+		"**/.DS_Store": true,
+		"**/.git": true,
+		"**/TestResults": true,
+		"**/Thumbs.db": true,
+		"**/bin": true,
+		"**/obj": true,
+		"*.user": true,
+		".idea": true,
+		".vs": true
+	},
+	"git.autofetch": true,
+	"git.enableSmartCommit": true,
+	"git.inputValidationLength": 160,
+	"git.inputValidationSubjectLength": null,
+	"search.useGlobalIgnoreFiles": true,
+	"search.useParentIgnoreFiles": true,
+	"testExplorer.useNativeTesting": true,
+	"todo-tree.highlights.defaultHighlight": {
+		"background": "#000000",
+		"fontWeight": "900",
+		"opacity": 0
+	},
+	"todohighlight.defaultStyle": {
+		"backgroundColor": "editor.background"
+	},
+	// https://code.visualstudio.com/api/references/theme-color
+	"todohighlight.keywords": [
+		{
+			"backgroundColor": "editor.background",
+			"color": "yellow",
+			"text": "TODO:"
+		},
+		{
+			"backgroundColor": "editor.background",
+			"color": "orange",
+			"text": "FIXME:"
+		},
+		{
+			"backgroundColor": "editor.background",
+			"color": "red",
+			"text": "HACK:"
+		},
+		{
+			"backgroundColor": "editor.background",
+			"color": "#00FF00",
+			"text": "HINT:"
+		}
+	],
+	"xml.foldings.includeClosingTagInFold": true,
+	"xml.validation.resolveExternalEntities": true
+}

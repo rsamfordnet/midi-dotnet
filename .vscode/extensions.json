@@ -1,0 +1,106 @@
+{
+	"recommendations": [
+		// IDE Extensions
+		"editorconfig.editorconfig",
+		"formulahendry.code-runner",
+		"ryu1kn.partial-diff",
+		"streetsidesoftware.code-spell-checker",
+
+		// Quality of Life Extensions
+		"alefragnani.project-manager",
+		"christian-kohler.path-intellisense",
+		"formulahendry.auto-rename-tag",
+
+		// Code Navigation Extensions
+		"aaron-bond.better-comments",
+		"alefragnani.bookmarks",
+		"gruntfuggly.todo-tree",
+
+		// Visual Extensions
+		"file-icons.file-icons",
+		"ibm.output-colorizer",
+		"vscode-icons-team.vscode-icons",
+
+		// Remote Extensions
+		"ms-vscode.remote-explorer",
+		"ms-vscode.remote-server",
+		"ms-vsliveshare.vsliveshare",
+
+		// Search Extensions
+		"codeque.codeque",
+		"jakearl.search-editor-apply-changes",
+		"kbysiec.vscode-search-everywhere",
+
+		// Code Folding
+		"moalamri.inline-fold",
+		"outofsync42.fold-types",
+
+		// Formatting Extensions
+		"esbenp.prettier-vscode",
+		"svipas.prettier-plus",
+
+		// Git Extension
+		"codezombiech.gitignore",
+		"donjayamanne.git-extension-pack",
+		"donjayamanne.githistory",
+		"felipecaputo.git-project-manager",
+		"mhutchie.git-graph",
+		"ms-vscode.remote-repositories",
+
+		// Github Extensions
+		"ziyasal.vscode-open-in-github",
+
+		// .NET Extensions
+		"adrianwilczynski.add-reference",
+		"adrianwilczynski.namespace",
+		"aliasadidev.nugetpackagemanagergui",
+		"corylulu.csharp-interpolated-string-converter",
+		"eridem.vscode-nupkg",
+		"fernandoescolar.vscode-solution-explorer",
+		"fudge.auto-using",
+		"jesschadwick.nuget-reverse-package-search",
+		"jongrant.csharpsortusings",
+		"jorgeserrano.vscode-csharp-snippets",
+		"k--kato.docomment",
+		"kishoreithadi.dotnet-core-essentials",
+		"kreativ-software.csharpextensions",
+		"leo-labs.dotnet",
+		"logerfo.sln-support",
+		"mfery.dotnetexplorer",
+		"ms-dotnettools.csharp",
+		"ms-dotnettools.dotnet-interactive-vscode",
+		"ms-dotnettools.vscode-dotnet-runtime",
+		"visualstudioexptteam.intellicode-api-usage-examples",
+		"visualstudioexptteam.vscodeintellicode",
+
+		// MSBuild
+		"tintoy.msbuild-project-tools",
+
+		// Test Extensions
+		"formulahendry.dotnet-test-explorer",
+		"ms-vscode.test-adapter-converter",
+
+		// Markdown Extensions
+		"bierner.markdown-checkbox",
+		"bierner.markdown-mermaid",
+		"bierner.markdown-preview-github-styles",
+		"bierner.markdown-prism",
+		"bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+		"darkriszty.markdown-table-prettify",
+		"jebbs.markdown-extended",
+		"kortina.vscode-markdown-notes",
+		"pharndt.vscode-markdown-table",
+		"shd101wyy.markdown-preview-enhanced",
+		"yzhang.markdown-all-in-one",
+
+		// PowerShell Extensions
+		"ms-vscode.powershell",
+		"vin-liberty.powershell-snippets",
+
+		// Common File Extensions
+		"redhat.vscode-xml",
+		"redhat.vscode-yaml",
+		"remcohaszing.schemastore",
+		"richie5um2.vscode-sort-json"
+	]
+}
