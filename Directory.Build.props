@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<!-- https://github.com/dotnet/reproducible-builds/tree/main/Documentation/Reproducible-MSBuild/Techniques -->
-	<Sdk Name="DotNet.ReproducibleBuilds.Isolated" Version="1.1.1" />
+	<Sdk Name="DotNet.ReproducibleBuilds.Isolated" />
 
 	<PropertyGroup Label="DotNet">
 		<!-- https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/language -->
@@ -66,14 +66,14 @@
 	</ItemGroup>
 
 	<ItemGroup Label="GlobalAnalyzers">
-		<PackageReference Include="Nullable.Extended.Analyzer" Version="1.10.4539">
+		<PackageReference Include="Nullable.Extended.Analyzer">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup Label="GlobalAnnotations">
-		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+		<PackageReference Include="JetBrains.Annotations" />
 		<Using Include="JetBrains.Annotations" />
 	</ItemGroup>
 

@@ -15,35 +15,35 @@ public class MidiProtocol : IMessageReader<MidiMessage>, IMessageWriter<MidiMess
 		var reader = new SequenceReader<byte>(input);
 
 		if (reader.TryPeek(out var val)) {
-			if (!MidiStatusByte.IsStatusByte(val)) {
+			if (!Midi.MidiStatusByte.IsStatusByte(val)) {
 
 			}
 		}
 
 		if (!reader.TryReadToAny(
 			sequence: out var line,
-			delimiters: MidiStatusByte.AllStatusBytes,
+			delimiters: Midi.MidiStatusByte.AllStatusBytes,
 			advancePastDelimiter: false
 		)) {
-			message = MidiMessage.Empty;
+			message = MidiMessageBuilder.Empty;
 			consumed = input.Start;
 			examined = input.End;
 			return false;
 		}
 
-		message = new(line);
+		message = new RawMidiMessage {
+			DataBytes = line.ToArray()
+		};
 		consumed = input.GetPosition(line.Length);
 		examined = input.GetPosition(reader.Consumed);
 		return true;
 	}
 
 	public void WriteMessage(MidiMessage message, IBufferWriter<byte> output) {
-		foreach (var segment in message.RawBytes) {
-			output.Write(segment.Span);
+		if (message is not RawMidiMessage rawMessage) {
+			throw new ArgumentException($"Message must be of type {nameof(RawMidiMessage)}", nameof(message));
 		}
 
-		var memory = output.GetMemory(1);
-		memory.Span[0] = MidiStatusByte.SystemExclusiveEnd.Value;
-		output.Advance(1);
+		output.Write(rawMessage.DataBytes);
 	}
 }

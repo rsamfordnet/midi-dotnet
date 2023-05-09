@@ -26,7 +26,7 @@
 		"gitlens.codeLens.scopes": ["document"]
 	},
 	"cSpell.language": "en-US",
-	"cSpell.words": ["Digi"],
+	"cSpell.words": ["Aftertouch", "Digi", "Hearbeat", "msbuild"],
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true,
 		"source.organizeImports": true
@@ -58,7 +58,8 @@
 		"**/.azure-pipelines/**/*.yml": "azure-pipelines",
 		"**/.editorconfig": "editorconfig",
 		"**/.globalconfig": "editorconfig",
-		"**/.vscode/solution-explorer/*.cs-template": "csharp"
+		"**/.vscode/solution-explorer/*.cs-template": "csharp",
+		"**/global.json": "jsonc"
 	},
 	"files.autoSave": "off",
 	"files.exclude": {

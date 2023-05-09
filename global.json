@@ -1,7 +1,10 @@
 {
-  "sdk": {
-    "version": "7.0.0",
-    "rollForward": "latestMinor",
-    "allowPrerelease": false
-  }
+	"msbuild-sdks": {
+		"DotNet.ReproducibleBuilds.Isolated": "1.1.1"
+	},
+	"sdk": {
+		"allowPrerelease": false,
+		"rollForward": "latestFeature",
+		"version": "7.0.0"
+	}
 }

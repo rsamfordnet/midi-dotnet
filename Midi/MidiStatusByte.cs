@@ -1,7 +1,6 @@
 ﻿namespace Midi;
 
 using System.Diagnostics.CodeAnalysis;
-using Midi.Extensions;
 
 /// <summary>
 ///		Status bytes are eight-bit binary numbers in which the Most Significant Bit (MSB) is set (binary 1).
@@ -10,19 +9,10 @@ using Midi.Extensions;
 ///		even if the last message was not completed.
 /// </summary>
 public sealed record MidiStatusByte {
-	/// <remarks>
-	///		MIDI 1.0 Detailed Specification 4.2.1 - Page 3 (PDF Page 8)
-	/// </remarks>
-	public const byte MinDataByte = 0x00;
-	public const byte MaxDataByte = 0x7F;
-
-	public const byte MinStatusByte = 0x80;
-	public const byte MaxStatusByte = 0xFF;
-
-	public static readonly byte[] AllStatusBytes =
-		Enumerable
-			.Range(MinStatusByte, MaxStatusByte)
-			.Select(x => (byte)x).ToArray();
+	public static readonly byte[] AllStatusBytes = Enumerable.Range(
+		MidiByte.StatusRange.Start.Value,
+		MidiByte.StatusRange.End.Value
+	).Select(x => (byte)x).ToArray();
 
 	#region Channel Status Bytes
 
@@ -70,7 +60,7 @@ public sealed record MidiStatusByte {
 	///		True if the byte is a status byte, otherwise false if it is a data byte.
 	/// </returns>
 	public static bool IsStatusByte(byte value) {
-		return value >= MinStatusByte;
+		return MidiByte.IsStatusByte(value);
 	}
 
 	public static bool TryGet(byte statusByte, [NotNullWhen(true)] out MidiStatusByte? status) {
