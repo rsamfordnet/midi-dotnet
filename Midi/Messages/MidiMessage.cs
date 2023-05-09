@@ -1,7 +1,7 @@
 namespace Midi.Messages;
 
 public abstract class MidiMessage {
-	public MidiStatusByte Status { get; }
+	public MidiStatusByte Status { get; } = MidiStatusByte.Unknown;
 }
 
 public class RawMidiMessage : MidiMessage, VariableDataBytes {

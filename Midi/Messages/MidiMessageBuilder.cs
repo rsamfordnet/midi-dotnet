@@ -2,7 +2,7 @@
 
 public static class MidiMessageBuilder {
 	public static readonly RawMidiMessage Empty = new();
-	public static readonly RawMidiMessage Hearbeat = new() {
+	public static readonly RawMidiMessage Heartbeat = new() {
 		DataBytes = new byte[] { 0xF0, 0x43, 0x10, 0x3E, 0x19, 0x7F, 0xF7 }
 	};
 

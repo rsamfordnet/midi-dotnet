@@ -9,10 +9,13 @@ using System.Diagnostics.CodeAnalysis;
 ///		even if the last message was not completed.
 /// </summary>
 public sealed record MidiStatusByte {
+	private static readonly HashSet<MidiStatusByte> values = new();
 	public static readonly byte[] AllStatusBytes = Enumerable.Range(
 		MidiByte.StatusRange.Start.Value,
 		MidiByte.StatusRange.End.Value
 	).Select(x => (byte)x).ToArray();
+
+	public static readonly MidiStatusByte Unknown = new(0x00);
 
 	#region Channel Status Bytes
 
@@ -41,8 +44,6 @@ public sealed record MidiStatusByte {
 	public static readonly MidiStatusByte SystemExclusiveEnd = new(0xF7);
 
 	#endregion
-
-	private static readonly HashSet<MidiStatusByte> values = new();
 
 	private MidiStatusByte(byte value, bool highOnly = false) {
 		Value = value;
