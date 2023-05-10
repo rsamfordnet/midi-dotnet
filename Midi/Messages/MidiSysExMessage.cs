@@ -1,4 +1,4 @@
-namespace Midi.Messages.System;
+namespace Midi.Messages;
 
 /// <summary>
 /// 	<p>
@@ -16,10 +16,7 @@ namespace Midi.Messages.System;
 /// 		their ID.
 /// 	</p>
 /// </summary>
-public class SystemExclusiveMessage : MidiMessage, VariableDataBytes {
-	public byte StatusByte { get; init; }
-	public byte[] DataBytes { get; init; } = Array.Empty<byte>();
-
+public class MidiSysExMessage : MidiVariableLengthMessage {
 	public byte SysExId { get; init; }
 
 	/// <summary>

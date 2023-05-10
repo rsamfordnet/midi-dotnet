@@ -82,6 +82,7 @@ dotnet_diagnostic.CA2016.severity = warning		# Forward the cancellation token pa
 dotnet_diagnostic.CA2100.severity = none		# Review SQL queries for security vulnerabilities
 dotnet_diagnostic.CA2201.severity = none		# Do not raise reserved exception types
 dotnet_diagnostic.CA2213.severity = none		# Disposable fields should be disposed
+dotnet_diagnostic.CA2225.severity = silent		# Provide a named method as an alternate for implicit operator
 dotnet_diagnostic.CA2227.severity = none		# Collection properties should be read only
 dotnet_diagnostic.CA2234.severity = silent		# Pass System.Uri objects instead of strings
 dotnet_diagnostic.CA2253.severity = warning		# Named placeholders in the logging message template should not be compised of only numeric characters

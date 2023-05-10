@@ -1,22 +1,15 @@
 namespace Midi.Messages;
 
 public abstract class MidiMessage {
-	public MidiStatusByte Status { get; } = MidiStatusByte.Unknown;
+	public required byte Status { get; init; }
+	public required ReadOnlyMemory<byte> Payload { get; init; } = Array.Empty<byte>();
 }
 
-public class RawMidiMessage : MidiMessage, VariableDataBytes {
-	public byte[] DataBytes { get; init; } = Array.Empty<byte>();
+public abstract class MidiFixedLengthMessage : MidiMessage {
+	public required byte Parameter1 { get; init; }
+	public required byte Parameter2 { get; init; }
 }
 
-public interface SingleDataByte {
-	public byte DataByte { get; }
-}
-
-public interface DoubleDataByte {
-	public byte DataByte1 { get; }
-	public byte DataByte2 { get; }
-}
-
-public interface VariableDataBytes {
-	public byte[] DataBytes { get; }
+public abstract class MidiVariableLengthMessage : MidiMessage {
+	public required ReadOnlyMemory<byte> Data { get; init; } = Array.Empty<byte>();
 }

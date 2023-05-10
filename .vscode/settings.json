@@ -26,7 +26,8 @@
 		"gitlens.codeLens.scopes": ["document"]
 	},
 	"cSpell.language": "en-US",
-	"cSpell.words": ["Aftertouch", "Digi", "Hearbeat", "msbuild"],
+	"cSpell.words": ["Aftertouch", "Digi", "Hearbeat", "msbuild", "UART"],
+	"dotnet-test-explorer.testProjectPath": "**/*Tests.@(csproj|vbproj|fsproj)",
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true,
 		"source.organizeImports": true

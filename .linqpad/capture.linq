@@ -92,8 +92,23 @@ void Device_OnPacketArrival(object s, PacketCapture e) {
 //	}
 }
 
-class HexConverter {
-	public static string BytesToHex(ReadOnlyMemory<byte> bytes) {
+public enum ByteBit : byte {
+	Bit1 = 1,
+	Bit2 = 2,
+	Bit3 = 3,
+	Bit4 = 4,
+	Bit5 = 5,
+	Bit6 = 6,
+	Bit7 = 7,
+	Bit8 = 8
+}
+
+static class HexConverter {
+	public static bool GetBit(this byte value, ByteBit bit) {
+		return (value & (1 << (byte)bit)) != 0;
+	}
+	
+	public static string BytesToHex(this ReadOnlyMemory<byte> bytes) {
 		var sb = new StringBuilder(bytes.Length * 3 - 1);
 
 		for (var i = 0; i < bytes.Length; i++) {
@@ -106,12 +121,12 @@ class HexConverter {
 		return sb.ToString();
 	}
 
-	public static string BytesToHex(ReadOnlySpan<byte> bytes) {
+	public static string BytesToHex(this ReadOnlySpan<byte> bytes, char seperator = '-') {
 		var sb = new StringBuilder(bytes.Length * 3 - 1);
 
 		for (var i = 0; i < bytes.Length; i++) {
 			if (i > 0) {
-				sb.Append('-');
+				sb.Append(seperator);
 			}
 			sb.Append(bytes[i].ToString("X2"));
 		}
@@ -119,13 +134,13 @@ class HexConverter {
 		return sb.ToString();
 	}
 	
-	public static string BytesToHexFast(ReadOnlySpan<byte> bytes) {
+	public static string BytesToHexFast(ReadOnlySpan<byte> bytes, char seperator = '-') {
 		var outputLength = bytes.Length * 3 - 1;
 		var chars = outputLength < 1024 ? stackalloc char[outputLength] : new char[outputLength];
 
 		for (int i = 0, j = 0; i < bytes.Length; i++, j += 3) {
 			if (i > 0) {
-				chars[j - 1] = '-';
+				chars[j - 1] = seperator;
 			}
 			
 			WriteByteAsHexFast(chars.Slice(j), bytes[i]);

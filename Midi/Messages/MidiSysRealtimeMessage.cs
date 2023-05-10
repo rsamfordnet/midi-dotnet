@@ -1,4 +1,4 @@
-namespace Midi.Messages.System;
+namespace Midi.Messages;
 
 /// <summary>
 /// 	Real-Time messages are used for synchronization and are intended for all clock-
@@ -8,6 +8,9 @@ namespace Midi.Messages.System;
 /// 	upon or ignored, after which the receiving process resumes under the previous
 /// 	status.
 /// </summary>
-public class SystemRealTimeMessage : MidiMessage {
-	public byte StatusByte { get; }
+public class MidiSysRealtimeMessage : MidiMessage {
+	/// <summary>
+	/// The type of real-time midi message.
+	/// </summary>
+	public MidiSysRealtimeType RealtimeType { get; set; }
 }

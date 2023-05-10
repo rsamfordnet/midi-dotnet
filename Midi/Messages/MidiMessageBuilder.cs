@@ -1,14 +1,23 @@
 ﻿namespace Midi.Messages;
 
 public static class MidiMessageBuilder {
-	public static readonly RawMidiMessage Empty = new();
+	public static readonly RawMidiMessage Empty = new() {
+		Status = MidiStatusByte.Unknown.Value,
+		Payload = Array.Empty<byte>(),
+		Data = Array.Empty<byte>(),
+	};
+
 	public static readonly RawMidiMessage Heartbeat = new() {
-		DataBytes = new byte[] { 0xF0, 0x43, 0x10, 0x3E, 0x19, 0x7F, 0xF7 }
+		Status = MidiStatusByte.Unknown.Value,
+		Payload = new byte[] { 0xF0, 0x43, 0x10, 0x3E, 0x19, 0x7F, 0xF7 },
+		Data = Array.Empty<byte>(),
 	};
 
 	public static RawMidiMessage GenericHandshake(byte deviceId, GenericHandshakeType type, byte packetNumber) {
 		return new() {
-			DataBytes = new byte[] { 0xF0, 0x7E, deviceId, (byte)type, packetNumber, 0xF7 }
+			Status = MidiStatusByte.Unknown.Value,
+			Payload = new byte[] { 0xF0, 0x7E, deviceId, (byte)type, packetNumber, 0xF7 },
+			Data = Array.Empty<byte>(),
 		};
 	}
 }
