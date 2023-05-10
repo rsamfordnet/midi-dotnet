@@ -2,20 +2,20 @@
 
 public static class MidiMessageBuilder {
 	public static readonly RawMidiMessage Empty = new() {
-		Status = MidiStatusByte.Unknown.Value,
+		Status = byte.MinValue,
 		Payload = Array.Empty<byte>(),
 		Data = Array.Empty<byte>(),
 	};
 
 	public static readonly RawMidiMessage Heartbeat = new() {
-		Status = MidiStatusByte.Unknown.Value,
+		Status = byte.MinValue,
 		Payload = new byte[] { 0xF0, 0x43, 0x10, 0x3E, 0x19, 0x7F, 0xF7 },
 		Data = Array.Empty<byte>(),
 	};
 
 	public static RawMidiMessage GenericHandshake(byte deviceId, GenericHandshakeType type, byte packetNumber) {
 		return new() {
-			Status = MidiStatusByte.Unknown.Value,
+			Status = byte.MinValue,
 			Payload = new byte[] { 0xF0, 0x7E, deviceId, (byte)type, packetNumber, 0xF7 },
 			Data = Array.Empty<byte>(),
 		};

@@ -1,6 +1,7 @@
 ﻿namespace Midi.IO;
 
 using System.Text;
+using Midi.Messages;
 
 public class MidiBinaryReader : BinaryReader {
 	private bool endOfMessage;
@@ -8,7 +9,7 @@ public class MidiBinaryReader : BinaryReader {
 	public MidiBinaryReader(Stream input) : base(input) { }
 
 	public bool EndOfMessage {
-		get => endOfMessage || PeekChar() == MidiStatusByte.SystemExclusiveEnd.Value;
+		get => endOfMessage || PeekChar() == MidiSysExMessage.EndMarker;
 		protected set => endOfMessage = value;
 	}
 
@@ -16,10 +17,10 @@ public class MidiBinaryReader : BinaryReader {
 		var sb = new StringBuilder();
 
 		for (var ch = (char)ReadByte();
-			 ch != char.MinValue && ch != MidiStatusByte.SystemExclusiveEnd.Value;
+			 ch is not char.MinValue and not (char)MidiSysExMessage.EndMarker;
 			 ch = (char)ReadByte()) {
 			_ = sb.Append(ch);
-			EndOfMessage = ch == MidiStatusByte.SystemExclusiveEnd.Value;
+			EndOfMessage = ch == MidiSysExMessage.EndMarker;
 		}
 
 		return sb.ToString();

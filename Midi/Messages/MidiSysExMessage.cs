@@ -17,6 +17,9 @@ namespace Midi.Messages;
 /// 	</p>
 /// </summary>
 public class MidiSysExMessage : MidiVariableLengthMessage {
+	public const byte StartMarker = 0xF0;
+	public const byte EndMarker = 0xF7;
+
 	public byte SysExId { get; init; }
 
 	/// <summary>
