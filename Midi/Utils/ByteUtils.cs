@@ -1,4 +1,6 @@
-﻿internal static class ByteUtils {
+﻿namespace Midi.Utils;
+
+internal static class ByteUtils {
 	public static byte GetHighNibble(this byte x) {
 		return (byte)((x >> 4) & 0xF);
 	}

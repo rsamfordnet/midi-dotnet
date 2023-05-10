@@ -3,13 +3,11 @@ namespace Midi.Messages;
 /// <summary>
 /// 	The types of real-time midi messages.
 /// </summary>
-public enum MidiSysRealtimeType : byte {
+public enum MidiSystemRealTimeType : byte {
 	/// <summary>
 	/// 	Not a system real-time message.
 	/// </summary>
 	Invalid = 0x00,
-
-	SongSelect = 0xF3,
 
 	/// <summary>
 	/// 	Some master device that controls sequence playback sends this timing

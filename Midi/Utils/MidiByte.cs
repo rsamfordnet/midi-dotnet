@@ -1,5 +1,7 @@
 namespace Midi.Utils;
 
+using Midi.Messages;
+
 public static class MidiByte {
 	public static readonly Range DataRange = new(0x00, 0x7F);
 	public static readonly Range StatusRange = new(0x80, 0xFF);
@@ -23,11 +25,11 @@ public static class MidiByte {
 	}
 
 	public static bool IsSystemExclusiveStart(byte midiByte) {
-		return midiByte == 0xF0;
+		return midiByte == (byte)MidiSystemCommonMessageType.SystemExclusive;
 	}
 
 	public static bool IsSystemExclusiveEnd(byte midiByte) {
-		return midiByte == 0xF7;
+		return midiByte == (byte)MidiSystemCommonMessageType.EndOfExclusive;
 	}
 
 	public static bool IsProgramChange(byte midiByte) {

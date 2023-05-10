@@ -8,9 +8,9 @@ namespace Midi.Messages;
 /// 	upon or ignored, after which the receiving process resumes under the previous
 /// 	status.
 /// </summary>
-public class MidiSysRealtimeMessage : MidiMessage {
+public class MidiSystemRealTimeMessage : MidiMessage {
 	/// <summary>
 	/// The type of real-time midi message.
 	/// </summary>
-	public MidiSysRealtimeType RealtimeType { get; set; }
+	public MidiSystemRealTimeType Type { get; set; }
 }

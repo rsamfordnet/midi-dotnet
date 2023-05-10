@@ -9,7 +9,7 @@ public class MidiBinaryReader : BinaryReader {
 	public MidiBinaryReader(Stream input) : base(input) { }
 
 	public bool EndOfMessage {
-		get => endOfMessage || PeekChar() == MidiSysExMessage.EndMarker;
+		get => endOfMessage || PeekChar() == MidiSystemExclusiveMessage.EndMarker;
 		protected set => endOfMessage = value;
 	}
 
@@ -17,10 +17,10 @@ public class MidiBinaryReader : BinaryReader {
 		var sb = new StringBuilder();
 
 		for (var ch = (char)ReadByte();
-			 ch is not char.MinValue and not (char)MidiSysExMessage.EndMarker;
+			 ch is not char.MinValue and not (char)MidiSystemExclusiveMessage.EndMarker;
 			 ch = (char)ReadByte()) {
 			_ = sb.Append(ch);
-			EndOfMessage = ch == MidiSysExMessage.EndMarker;
+			EndOfMessage = ch == MidiSystemExclusiveMessage.EndMarker;
 		}
 
 		return sb.ToString();

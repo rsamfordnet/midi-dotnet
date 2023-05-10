@@ -1,5 +1,7 @@
 namespace Midi.Messages;
 
+using System.Diagnostics.CodeAnalysis;
+
 public class MidiChannelCommandType : TypedEnum<byte> {
 	/// <summary>
 	/// An invalid channel command.
@@ -42,9 +44,34 @@ public class MidiChannelCommandType : TypedEnum<byte> {
 	/// </summary>
 	public static readonly MidiChannelCommandType PitchWheel = new(0xE0, 3);
 
-	private MidiChannelCommandType(byte value, int parameters) : base(value) {
-		Parameters = parameters;
+	private MidiChannelCommandType(byte value, int dataByteCount) : base(value) {
+		DataByteCount = dataByteCount;
 	}
 
-	public int Parameters { get; set; }
+	public int DataByteCount { get; set; }
+
+	public static MidiChannelCommandType Parse(byte value) {
+		return TryParse(value, out var result) ? result : throw new FormatException("Invalid channel command.");
+	}
+
+	public static bool TryParse(byte value, [NotNullWhen(true)] out MidiChannelCommandType? result) {
+		result = Invalid;
+
+		if (value is < 0x80 or > 0xEF) {
+			return false;
+		}
+
+		result = value switch {
+			0x80 => NoteOff,
+			0x90 => NoteOn,
+			0xA0 => PolyPressure,
+			0xB0 => ControlChange,
+			0xC0 => ProgramChange,
+			0xD0 => ChannelPressure,
+			0xE0 => PitchWheel,
+			_ => Invalid
+		};
+
+		return true;
+	}
 }
